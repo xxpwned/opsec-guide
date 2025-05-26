@@ -3,564 +3,557 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>2025 OPSEC Guide</title>
+<title>OPSEC Guide 2025 - Service Ratings</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0; background: #121212; color: #eee;
-    line-height: 1.6;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #121212;
+    color: #e0e0e0;
   }
-  header {
-    background: #222;
-    padding: 1rem;
+  h1, h2 {
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #4caf50;
+    margin: 1rem 0;
   }
-  nav {
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+  }
+
+  /* Tabs */
+  .tabs {
     display: flex;
     justify-content: center;
-    background: #333;
-    border-bottom: 2px solid #4caf50;
+    border-bottom: 2px solid #222;
+    margin-bottom: 1rem;
   }
-  nav button {
-    background: none;
-    border: none;
+  .tab {
     padding: 1rem 1.5rem;
-    font-size: 1rem;
-    color: #eee;
     cursor: pointer;
+    color: #bbb;
     border-bottom: 3px solid transparent;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
+    user-select: none;
   }
-  nav button:hover,
-  nav button.active {
-    border-bottom: 3px solid #4caf50;
+  .tab:hover {
+    color: #fff;
+  }
+  .tab.active {
+    border-color: #4caf50;
     color: #4caf50;
+    font-weight: 600;
   }
-  main {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+
+  /* Tab content */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
   }
+  .tab-content.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 2rem;
+    font-size: 0.95rem;
   }
-  table th, table td {
-    border: 1px solid #444;
-    padding: 0.7rem 1rem;
+  thead {
+    background-color: #222;
+  }
+  th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #333;
+    text-align: center;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #1e1e1e;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #2a2a2a;
+  }
+  th {
+    font-weight: 600;
+    color: #4caf50;
+  }
+
+  /* Status badges */
+  .yes {
+    color: #4caf50;
+    font-weight: 700;
+  }
+  .no {
+    color: #f44336;
+    font-weight: 700;
+  }
+
+  /* Notes */
+  .notes {
+    font-size: 0.85rem;
+    color: #999;
     text-align: left;
+    max-width: 600px;
+    margin: 0 auto 2rem;
   }
-  table th {
-    background: #222;
-    color: #4caf50;
-  }
-  h2 {
-    color: #4caf50;
-    margin-top: 0;
-  }
-  .content-section {
-    display: none;
-  }
-  .content-section.active {
-    display: block;
-  }
-  /* Scroll for mobile */
-  table {
-    overflow-x: auto;
-    display: block;
-  }
+
   /* Responsive */
-  @media (max-width: 600px) {
-    nav {
-      flex-wrap: wrap;
+  @media (max-width: 700px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
     }
-    nav button {
-      flex: 1 1 45%;
-      margin-bottom: 0.5rem;
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
     }
+    tr {
+      margin: 0 0 1rem 0;
+    }
+    td {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      text-align: left;
+    }
+    td:before {
+      position: absolute;
+      top: 0.75rem;
+      left: 1rem;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: 600;
+      color: #4caf50;
+    }
+    td:nth-of-type(1):before { content: "Service"; }
+    td:nth-of-type(2):before { content: "Free?"; }
+    td:nth-of-type(3):before { content: "Logs IP?"; }
+    td:nth-of-type(4):before { content: "Logs Email?"; }
+    td:nth-of-type(5):before { content: "Subpoena Compliance?"; }
+    td:nth-of-type(6):before { content: "Payment Methods"; }
+    td:nth-of-type(7):before { content: "Notes"; }
   }
 </style>
 </head>
 <body>
+  <div class="container">
+    <h1>OPSEC Guide 2025</h1>
+    <h2>Service Ratings & Details</h2>
 
-<header>Ultimate 2025 OPSEC Guide</header>
+    <div class="tabs" role="tablist" aria-label="Service categories">
+      <div class="tab active" role="tab" tabindex="0" aria-selected="true" aria-controls="vpn" id="tab-vpn">VPN Services</div>
+      <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="email" id="tab-email">Email Providers</div>
+      <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="domains" id="tab-domains">Domain Registrars</div>
+      <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="hosting" id="tab-hosting">Hosting / VPS</div>
+      <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="guides" id="tab-guides">Quick OPSEC Tips</div>
+    </div>
 
-<nav>
-  <button class="tab-btn active" data-tab="vpn">VPN Services</button>
-  <button class="tab-btn" data-tab="email">Email Providers</button>
-  <button class="tab-btn" data-tab="sim">SIM & Phone</button>
-  <button class="tab-btn" data-tab="messaging">Messaging Apps</button>
-  <button class="tab-btn" data-tab="domain">Domain Registrars</button>
-  <button class="tab-btn" data-tab="hosting">Hosting & VPS</button>
-  <button class="tab-btn" data-tab="guides">Guides & Tips</button>
-</nav>
+    <!-- VPN Tab -->
+    <section id="vpn" class="tab-content active" role="tabpanel" aria-labelledby="tab-vpn">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Free?</th>
+            <th>Logs IP?</th>
+            <th>Logs Email?</th>
+            <th>Subpoena Compliance?</th>
+            <th>Payment Methods</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mullvad</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Cash, Crypto, Card</td>
+            <td>Sweden-based, no logs, strong privacy, no data to hand over</td>
+          </tr>
+          <tr>
+            <td>IVPN</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Card</td>
+            <td>Offshore Gibraltar, no logs, trusted privacy</td>
+          </tr>
+          <tr>
+            <td>AzireVPN</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Card</td>
+            <td>Sweden, no logs, privacy strong</td>
+          </tr>
+          <tr>
+            <td>AirVPN</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Cash</td>
+            <td>Italy-based, no logs, strong security</td>
+          </tr>
+          <tr>
+            <td>ProtonVPN</td>
+            <td class="yes (limited)">Yes*</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>Swiss jurisdiction, minimal logs, complies with requests</td>
+          </tr>
+          <tr>
+            <td>Windscribe</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>US-based, logs some IP & email, can comply with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Surfshark</td>
+            <td class="no">No</td>
+            <td class="minimal">Minimal</td>
+            <td class="minimal">Minimal</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>Logs connection metadata, jurisdiction US</td>
+          </tr>
+          <tr>
+            <td>NordVPN</td>
+            <td class="no">No</td>
+            <td class="minimal">Minimal</td>
+            <td class="minimal">Minimal</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>Panama-based but has complied with subpoenas in the past</td>
+          </tr>
+          <tr>
+            <td>Perfect Privacy</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Card</td>
+            <td>Switzerland, no logs, strong privacy focused</td>
+          </tr>
+          <tr>
+            <td>PIA (Private Internet Access)</td>
+            <td class="no">No</td>
+            <td class="minimal">Minimal</td>
+            <td class="minimal">Minimal</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>US-based, logs minimal connection data, has complied with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Ovpn.to</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Cash</td>
+            <td>Sweden-based, no logs, privacy strong</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-<main>
-  <!-- VPN Services -->
-  <section id="vpn" class="content-section active">
-    <h2>VPN Services — Non-US / Offshore Only</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>VPN Service</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Jurisdiction</th>
-          <th>Cost</th>
-          <th>Payment Methods</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Mullvad</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Sweden</td>
-          <td>Paid</td>
-          <td>Crypto, Cash</td>
-          <td>★★★★★</td>
-          <td>Strong privacy, anonymous account setup</td>
-        </tr>
-        <tr>
-          <td>IVPN</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Gibraltar</td>
-          <td>Paid</td>
-          <td>Crypto, Cash</td>
-          <td>★★★★☆</td>
-          <td>Solid privacy, good speed</td>
-        </tr>
-        <tr>
-          <td>AzireVPN</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Sweden</td>
-          <td>Paid</td>
-          <td>Crypto, Cash</td>
-          <td>★★★★☆</td>
-          <td>Open source client</td>
-        </tr>
-        <tr>
-          <td>AirVPN</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Italy</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Privacy focused, supports Tor</td>
-        </tr>
-        <tr>
-          <td>VPN.ac</td>
-          <td>Minimal</td>
-          <td>No</td>
-          <td>Romania</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★☆☆</td>
-          <td>Some connection logs retained</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Email Tab -->
+    <section id="email" class="tab-content" role="tabpanel" aria-labelledby="tab-email">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Free?</th>
+            <th>Logs IP?</th>
+            <th>Logs Email Content?</th>
+            <th>Subpoena Compliance?</th>
+            <th>Payment Methods</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ProtonMail</td>
+            <td class="yes">Yes (Limited)</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto, Free</td>
+            <td>Swiss jurisdiction, no logs of IP/content, encrypted emails</td>
+          </tr>
+          <tr>
+            <td>Tutanota</td>
+            <td class="yes">Yes (Limited)</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Free, Crypto</td>
+            <td>Germany-based, zero-knowledge encryption, no logs, resists subpoenas</td>
+          </tr>
+          <tr>
+            <td>Mailbox.org</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>Germany, logs some metadata, complies with legal requests</td>
+          </tr>
+          <tr>
+            <td>Posteo</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Card, Crypto</td>
+            <td>Germany-based, no logs, privacy focused</td>
+          </tr>
+          <tr>
+            <td>Mailfence</td>
+            <td class="yes (Limited)">Yes (Limited)</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto, Free</td>
+            <td>Belgium-based, logs some metadata, complies with requests</td>
+          </tr>
+          <tr>
+            <td>Disroot</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Free, Donations</td>
+            <td>Non-profit, no logs, strong privacy ethics</td>
+          </tr>
+          <tr>
+            <td>Guerrilla Mail</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Free</td>
+            <td>Disposable, no signup, temporary email</td>
+          </tr>
+          <tr>
+            <td>SimpleLogin</td>
+            <td class="yes (Limited)">Yes (Limited)</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Free, Crypto, Card</td>
+            <td>Email aliasing, privacy focused</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <!-- Email Providers -->
-  <section id="email" class="content-section">
-    <h2>Email Providers — Privacy-Focused & Offshore</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Email Provider</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Jurisdiction</th>
-          <th>Cost</th>
-          <th>Payment Methods</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tutanota</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Germany</td>
-          <td>Free / Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Open source, encrypted emails</td>
-        </tr>
-        <tr>
-          <td>Posteo</td>
-          <td>Minimal</td>
-          <td>No</td>
-          <td>Germany</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Strong privacy, no ads</td>
-        </tr>
-        <tr>
-          <td>CTemplar</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Iceland</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Privacy-focused, no logs</td>
-        </tr>
-        <tr>
-          <td>Cock.li</td>
-          <td>No</td>
-          <td>Yes</td>
-          <td>US</td>
-          <td>Free</td>
-          <td>Crypto Donations</td>
-          <td>★★★☆☆</td>
-          <td>US jurisdiction, only if no better options</td>
-        </tr>
-        <tr>
-          <td>Mailbox.org</td>
-          <td>Minimal</td>
-          <td>Yes</td>
-          <td>Germany</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★☆☆</td>
-          <td>Good privacy, some legal obligations</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Domain Registrars Tab -->
+    <section id="domains" class="tab-content" role="tabpanel" aria-labelledby="tab-domains">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Offshore?</th>
+            <th>Logs IP?</th>
+            <th>Requires Email?</th>
+            <th>Subpoena Compliance?</th>
+            <th>Payment Methods</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Njalla</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Cash</td>
+            <td>Privacy focused, owned by Pirate Bay co-founder</td>
+          </tr>
+          <tr>
+            <td>OrangeWebsite</td>
+            <td class="yes">Yes (Iceland)</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td>Card, Crypto</td>
+            <td>Iceland, privacy friendly, no logs</td>
+          </tr>
+          <tr>
+            <td>Namecheap</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, PayPal, Crypto</td>
+            <td>US-based, logs info, complies with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Dynadot</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, PayPal</td>
+            <td>US-based, logs info, complies with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Epik</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>US-based, known for hosting controversial domains</td>
+          </tr>
+          <tr>
+            <td>Gandi</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, Crypto</td>
+            <td>France-based, privacy friendly, minimal logs</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <!-- SIM & Phone Number -->
-  <section id="sim" class="content-section">
-    <h2>SIM / Phone Number Services — OPSEC Focus</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Service</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Jurisdiction</th>
-          <th>Cost</th>
-          <th>Payment Methods</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>eSIM.me</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Estonia</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>eSIM with good privacy</td>
-        </tr>
-        <tr>
-          <td>Hushed</td>
-          <td>Logs</td>
-          <td>Yes</td>
-          <td>Canada</td>
-          <td>Paid</td>
-          <td>Card, Crypto</td>
-          <td>★★☆☆☆</td>
-          <td>Logs call metadata, less private</td>
-        </tr>
-        <tr>
-          <td>Sonetel</td>
-          <td>Minimal</td>
-          <td>No</td>
-          <td>Sweden</td>
-          <td>Paid</td>
-          <td>Crypto, Card</td>
-          <td>★★★☆☆</td>
-          <td>Business numbers, good offshore</td>
-        </tr>
-        <tr>
-          <td>Burner App</td>
-          <td>Logs</td>
-          <td>Yes</td>
-          <td>US</td>
-          <td>Paid</td>
-          <td>Card</td>
-          <td>★☆☆☆☆</td>
-          <td>Poor privacy, avoid</td>
-        </tr>
-        <tr>
-          <td>TextNow</td>
-          <td>Logs</td>
-          <td>Yes</td>
-          <td>US</td>
-          <td>Free</td>
-          <td>Card</td>
-          <td>★☆☆☆☆</td>
-          <td>Easy to get but poor OPSEC</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Hosting / VPS Tab -->
+    <section id="hosting" class="tab-content" role="tabpanel" aria-labelledby="tab-hosting">
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Offshore?</th>
+            <th>Logs IP?</th>
+            <th>Subpoena Compliance?</th>
+            <th>Payment Methods</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Njalla Hosting</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Cash</td>
+            <td>Privacy focused, no logs</td>
+          </tr>
+          <tr>
+            <td>OrangeWebsite VPS</td>
+            <td class="yes">Yes (Iceland)</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Card, Crypto</td>
+            <td>Iceland, privacy focused, no logs</td>
+          </tr>
+          <tr>
+            <td>DigitalOcean</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, PayPal</td>
+            <td>US-based, logs info, complies with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Linode</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, PayPal</td>
+            <td>US-based, logs info, complies with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Vultr</td>
+            <td class="no">No</td>
+            <td class="yes">Yes</td>
+            <td class="yes">Yes</td>
+            <td>Card, PayPal, Crypto</td>
+            <td>US-based, logs info, complies with subpoenas</td>
+          </tr>
+          <tr>
+            <td>Njalla Proxy</td>
+            <td class="yes">Yes</td>
+            <td class="no">No</td>
+            <td class="no">No</td>
+            <td>Crypto, Cash</td>
+            <td>Proxy service, privacy focused</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <!-- Messaging Apps -->
-  <section id="messaging" class="content-section">
-    <h2>Messaging Apps — Best Privacy and Anonymity</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>App</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Phone Required?</th>
-          <th>Cost</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Session</td>
-          <td>No</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Free</td>
-          <td>★★★★★</td>
-          <td>Open source, onion routing, no phone needed</td>
-        </tr>
-        <tr>
-          <td>SimpleX Chat</td>
-          <td>No</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Free</td>
-          <td>★★★★☆</td>
-          <td>Decentralized P2P, no phone</td>
-        </tr>
-        <tr>
-          <td>Briar</td>
-          <td>No</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Free</td>
-          <td>★★★★☆</td>
-          <td>P2P via Bluetooth/Tor, no central servers</td>
-        </tr>
-        <tr>
-          <td>Signal</td>
-          <td>Minimal</td>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>Free</td>
-          <td>★★★☆☆</td>
-          <td>Good encryption but phone number required</td>
-        </tr>
-        <tr>
-          <td>Telegram</td>
-          <td>Minimal</td>
-          <td>Possible</td>
-          <td>Optional</td>
-          <td>Free</td>
-          <td>★★☆☆☆</td>
-          <td>Cloud servers, phone optional</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <!-- Quick OPSEC Tips Tab -->
+    <section id="guides" class="tab-content" role="tabpanel" aria-labelledby="tab-guides">
+      <article style="max-width: 700px; margin: auto; line-height: 1.6; color: #ccc;">
+        <h3>Quick OPSEC Tips for 2025</h3>
+        <ul>
+          <li><strong>Use reputable no-log VPNs</strong> like Mullvad, IVPN, or AzireVPN to hide your IP.</li>
+          <li><strong>Use privacy-respecting email providers</strong> such as Tutanota or ProtonMail, and avoid Gmail or Outlook.</li>
+          <li><strong>Prefer cash or cryptocurrency payments</strong> to minimize payment traces.</li>
+          <li><strong>Use burner devices or VMs</strong> for risky activities.</li>
+          <li><strong>Enable 2FA and strong passwords</strong> on all accounts.</li>
+          <li><strong>Keep your software updated</strong> and avoid sketchy downloads.</li>
+          <li><strong>Use secure messaging apps</strong> like Signal or Session for private communication.</li>
+          <li><strong>Be careful what metadata you share</strong> in files and photos.</li>
+          <li><strong>Use Tor or bridges</strong> for extra anonymity in sensitive cases.</li>
+          <li><strong>Regularly audit your OPSEC</strong> habits and improve where needed.</li>
+        </ul>
+      </article>
+    </section>
 
-  <!-- Domain Registrars -->
-  <section id="domain" class="content-section">
-    <h2>Domain Registrars — Offshore & Privacy-Friendly</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Registrar</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Jurisdiction</th>
-          <th>Cost</th>
-          <th>Payment Methods</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Njalla</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Panama</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★★</td>
-          <td>Privacy-focused proxy domain ownership</td>
-        </tr>
-        <tr>
-          <td>OrangeWebsite</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Iceland</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Strong free speech & privacy policies</td>
-        </tr>
-        <tr>
-          <td>Epik</td>
-          <td>Minimal</td>
-          <td>Possible</td>
-          <td>US</td>
-          <td>Paid</td>
-          <td>Card</td>
-          <td>★★☆☆☆</td>
-          <td>Mixed reputation, US jurisdiction</td>
-        </tr>
-        <tr>
-          <td>Dynadot</td>
-          <td>Minimal</td>
-          <td>Yes</td>
-          <td>US</td>
-          <td>Paid</td>
-          <td>Card</td>
-          <td>★★☆☆☆</td>
-          <td>Logs and responds to subpoenas</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  </div>
 
-  <!-- Hosting & VPS -->
-  <section id="hosting" class="content-section">
-    <h2>Hosting & VPS — Offshore Options</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Provider</th>
-          <th>Logs?</th>
-          <th>Subpoena / EDR?</th>
-          <th>Jurisdiction</th>
-          <th>Cost</th>
-          <th>Payment Methods</th>
-          <th>Trust Rating</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>OrangeWebsite</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Iceland</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Privacy-focused hosting</td>
-        </tr>
-        <tr>
-          <td>FlokiNET</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Iceland, Romania, Finland</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Strong free speech, no logs</td>
-        </tr>
-        <tr>
-          <td>Njalla VPS</td>
-          <td>No</td>
-          <td>No</td>
-          <td>Panama</td>
-          <td>Paid</td>
-          <td>Crypto</td>
-          <td>★★★★☆</td>
-          <td>Privacy proxy for VPS</td>
-        </tr>
-        <tr>
-          <td>Hetzner</td>
-          <td>Minimal</td>
-          <td>Yes</td>
-          <td>Germany</td>
-          <td>Paid</td>
-          <td>Card, Crypto</td>
-          <td>★★★☆☆</td>
-          <td>Reliable but subject to EU laws</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-  <!-- Guides & Tips -->
-  <section id="guides" class="content-section">
-    <h2>OPSEC & Privacy Guides</h2>
-    <article>
-      <h3>Basic OPSEC Principles</h3>
-      <ul>
-        <li>Use separate identities and emails for sensitive activities.</li>
-        <li>Use strong, unique passwords + password manager.</li>
-        <li>Always enable 2FA where possible (preferably with hardware keys).</li>
-        <li>Use VPNs that don’t keep logs and support anonymous payment.</li>
-        <li>Prefer privacy-focused email providers, avoid big US-based ones.</li>
-        <li>Use burner phones or eSIMs purchased anonymously.</li>
-        <li>Keep devices updated and minimize metadata leakage.</li>
-        <li>Use end-to-end encrypted messaging apps without phone numbers (Session, SimpleX, Briar).</li>
-        <li>Avoid linking real identity with pseudonymous accounts.</li>
-      </ul>
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all tabs and contents
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tabContents.forEach(c => c.classList.remove('active'));
 
-      <h3>Staying Anonymous While Gaming</h3>
-      <p>Gaming platforms like Steam typically require email verification and sometimes phone verification. To improve privacy:</p>
-      <ul>
-        <li>Create a separate Steam account with privacy-focused email.</li>
-        <li>Use VPN when logging in.</li>
-        <li>Avoid linking payment methods to real identity (use crypto if possible).</li>
-        <li>Limit friend list and public profile visibility.</li>
-      </ul>
-
-      <h3>Handling Government Subpoenas & EDR</h3>
-      <p>Using offshore services with no logs and anonymous payment can greatly reduce subpoena risk. However:</p>
-      <ul>
-        <li>Always encrypt your data locally before uploading.</li>
-        <li>Use multi-hop VPN or Tor for extra anonymity.</li>
-        <li>Use pseudonyms, avoid sharing personal info.</li>
-        <li>Use ephemeral emails and accounts for risky operations.</li>
-      </ul>
-      <p>Remember, no method is 100% safe if extreme pressure is applied.</p>
-    </article>
-  </section>
-
-</main>
-
-<script>
-  // Tab switching logic
-  const buttons = document.querySelectorAll('nav button.tab-btn');
-  const sections = document.querySelectorAll('main section.content-section');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remove active class from all buttons and sections
-      buttons.forEach(btn => btn.classList.remove('active'));
-      sections.forEach(section => section.classList.remove('active'));
-
-      // Add active class to clicked button and corresponding section
-      button.classList.add('active');
-      const tabId = button.getAttribute('data-tab');
-      document.getElementById(tabId).classList.add('active');
+        // Add active to clicked tab and related content
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
+      });
     });
-  });
-</script>
 
+    // Activate first tab on load
+    tabs[0].click();
+  </script>
 </body>
 </html>
-<!-- End of site/index.html -->
-<!-- This is the end of the HTML document. -->
