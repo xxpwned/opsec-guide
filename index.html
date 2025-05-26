@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>2025 OPSEC Guide</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0; background: #121212; color: #eee;
+    line-height: 1.6;
+  }
+  header {
+    background: #222;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #4caf50;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    background: #333;
+    border-bottom: 2px solid #4caf50;
+  }
+  nav button {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: #eee;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav button:hover,
+  nav button.active {
+    border-bottom: 3px solid #4caf50;
+    color: #4caf50;
+  }
+  main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  table th, table td {
+    border: 1px solid #444;
+    padding: 0.7rem 1rem;
+    text-align: left;
+  }
+  table th {
+    background: #222;
+    color: #4caf50;
+  }
+  h2 {
+    color: #4caf50;
+    margin-top: 0;
+  }
+  .content-section {
+    display: none;
+  }
+  .content-section.active {
+    display: block;
+  }
+  /* Scroll for mobile */
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+  /* Responsive */
+  @media (max-width: 600px) {
+    nav {
+      flex-wrap: wrap;
+    }
+    nav button {
+      flex: 1 1 45%;
+      margin-bottom: 0.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>Ultimate 2025 OPSEC Guide</header>
+
+<nav>
+  <button class="tab-btn active" data-tab="vpn">VPN Services</button>
+  <button class="tab-btn" data-tab="email">Email Providers</button>
+  <button class="tab-btn" data-tab="sim">SIM & Phone</button>
+  <button class="tab-btn" data-tab="messaging">Messaging Apps</button>
+  <button class="tab-btn" data-tab="domain">Domain Registrars</button>
+  <button class="tab-btn" data-tab="hosting">Hosting & VPS</button>
+  <button class="tab-btn" data-tab="guides">Guides & Tips</button>
+</nav>
+
+<main>
+  <!-- VPN Services -->
+  <section id="vpn" class="content-section active">
+    <h2>VPN Services — Non-US / Offshore Only</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>VPN Service</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Jurisdiction</th>
+          <th>Cost</th>
+          <th>Payment Methods</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mullvad</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Sweden</td>
+          <td>Paid</td>
+          <td>Crypto, Cash</td>
+          <td>★★★★★</td>
+          <td>Strong privacy, anonymous account setup</td>
+        </tr>
+        <tr>
+          <td>IVPN</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Gibraltar</td>
+          <td>Paid</td>
+          <td>Crypto, Cash</td>
+          <td>★★★★☆</td>
+          <td>Solid privacy, good speed</td>
+        </tr>
+        <tr>
+          <td>AzireVPN</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Sweden</td>
+          <td>Paid</td>
+          <td>Crypto, Cash</td>
+          <td>★★★★☆</td>
+          <td>Open source client</td>
+        </tr>
+        <tr>
+          <td>AirVPN</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Italy</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Privacy focused, supports Tor</td>
+        </tr>
+        <tr>
+          <td>VPN.ac</td>
+          <td>Minimal</td>
+          <td>No</td>
+          <td>Romania</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★☆☆</td>
+          <td>Some connection logs retained</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Email Providers -->
+  <section id="email" class="content-section">
+    <h2>Email Providers — Privacy-Focused & Offshore</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Email Provider</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Jurisdiction</th>
+          <th>Cost</th>
+          <th>Payment Methods</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tutanota</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Germany</td>
+          <td>Free / Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Open source, encrypted emails</td>
+        </tr>
+        <tr>
+          <td>Posteo</td>
+          <td>Minimal</td>
+          <td>No</td>
+          <td>Germany</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Strong privacy, no ads</td>
+        </tr>
+        <tr>
+          <td>CTemplar</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Iceland</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Privacy-focused, no logs</td>
+        </tr>
+        <tr>
+          <td>Cock.li</td>
+          <td>No</td>
+          <td>Yes</td>
+          <td>US</td>
+          <td>Free</td>
+          <td>Crypto Donations</td>
+          <td>★★★☆☆</td>
+          <td>US jurisdiction, only if no better options</td>
+        </tr>
+        <tr>
+          <td>Mailbox.org</td>
+          <td>Minimal</td>
+          <td>Yes</td>
+          <td>Germany</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★☆☆</td>
+          <td>Good privacy, some legal obligations</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SIM & Phone Number -->
+  <section id="sim" class="content-section">
+    <h2>SIM / Phone Number Services — OPSEC Focus</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Jurisdiction</th>
+          <th>Cost</th>
+          <th>Payment Methods</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>eSIM.me</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Estonia</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>eSIM with good privacy</td>
+        </tr>
+        <tr>
+          <td>Hushed</td>
+          <td>Logs</td>
+          <td>Yes</td>
+          <td>Canada</td>
+          <td>Paid</td>
+          <td>Card, Crypto</td>
+          <td>★★☆☆☆</td>
+          <td>Logs call metadata, less private</td>
+        </tr>
+        <tr>
+          <td>Sonetel</td>
+          <td>Minimal</td>
+          <td>No</td>
+          <td>Sweden</td>
+          <td>Paid</td>
+          <td>Crypto, Card</td>
+          <td>★★★☆☆</td>
+          <td>Business numbers, good offshore</td>
+        </tr>
+        <tr>
+          <td>Burner App</td>
+          <td>Logs</td>
+          <td>Yes</td>
+          <td>US</td>
+          <td>Paid</td>
+          <td>Card</td>
+          <td>★☆☆☆☆</td>
+          <td>Poor privacy, avoid</td>
+        </tr>
+        <tr>
+          <td>TextNow</td>
+          <td>Logs</td>
+          <td>Yes</td>
+          <td>US</td>
+          <td>Free</td>
+          <td>Card</td>
+          <td>★☆☆☆☆</td>
+          <td>Easy to get but poor OPSEC</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Messaging Apps -->
+  <section id="messaging" class="content-section">
+    <h2>Messaging Apps — Best Privacy and Anonymity</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Phone Required?</th>
+          <th>Cost</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Session</td>
+          <td>No</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Free</td>
+          <td>★★★★★</td>
+          <td>Open source, onion routing, no phone needed</td>
+        </tr>
+        <tr>
+          <td>SimpleX Chat</td>
+          <td>No</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Free</td>
+          <td>★★★★☆</td>
+          <td>Decentralized P2P, no phone</td>
+        </tr>
+        <tr>
+          <td>Briar</td>
+          <td>No</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Free</td>
+          <td>★★★★☆</td>
+          <td>P2P via Bluetooth/Tor, no central servers</td>
+        </tr>
+        <tr>
+          <td>Signal</td>
+          <td>Minimal</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Free</td>
+          <td>★★★☆☆</td>
+          <td>Good encryption but phone number required</td>
+        </tr>
+        <tr>
+          <td>Telegram</td>
+          <td>Minimal</td>
+          <td>Possible</td>
+          <td>Optional</td>
+          <td>Free</td>
+          <td>★★☆☆☆</td>
+          <td>Cloud servers, phone optional</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Domain Registrars -->
+  <section id="domain" class="content-section">
+    <h2>Domain Registrars — Offshore & Privacy-Friendly</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Registrar</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Jurisdiction</th>
+          <th>Cost</th>
+          <th>Payment Methods</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Njalla</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Panama</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★★</td>
+          <td>Privacy-focused proxy domain ownership</td>
+        </tr>
+        <tr>
+          <td>OrangeWebsite</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Iceland</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Strong free speech & privacy policies</td>
+        </tr>
+        <tr>
+          <td>Epik</td>
+          <td>Minimal</td>
+          <td>Possible</td>
+          <td>US</td>
+          <td>Paid</td>
+          <td>Card</td>
+          <td>★★☆☆☆</td>
+          <td>Mixed reputation, US jurisdiction</td>
+        </tr>
+        <tr>
+          <td>Dynadot</td>
+          <td>Minimal</td>
+          <td>Yes</td>
+          <td>US</td>
+          <td>Paid</td>
+          <td>Card</td>
+          <td>★★☆☆☆</td>
+          <td>Logs and responds to subpoenas</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Hosting & VPS -->
+  <section id="hosting" class="content-section">
+    <h2>Hosting & VPS — Offshore Options</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Logs?</th>
+          <th>Subpoena / EDR?</th>
+          <th>Jurisdiction</th>
+          <th>Cost</th>
+          <th>Payment Methods</th>
+          <th>Trust Rating</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>OrangeWebsite</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Iceland</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Privacy-focused hosting</td>
+        </tr>
+        <tr>
+          <td>FlokiNET</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Iceland, Romania, Finland</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Strong free speech, no logs</td>
+        </tr>
+        <tr>
+          <td>Njalla VPS</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Panama</td>
+          <td>Paid</td>
+          <td>Crypto</td>
+          <td>★★★★☆</td>
+          <td>Privacy proxy for VPS</td>
+        </tr>
+        <tr>
+          <td>Hetzner</td>
+          <td>Minimal</td>
+          <td>Yes</td>
+          <td>Germany</td>
+          <td>Paid</td>
+          <td>Card, Crypto</td>
+          <td>★★★☆☆</td>
+          <td>Reliable but subject to EU laws</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Guides & Tips -->
+  <section id="guides" class="content-section">
+    <h2>OPSEC & Privacy Guides</h2>
+    <article>
+      <h3>Basic OPSEC Principles</h3>
+      <ul>
+        <li>Use separate identities and emails for sensitive activities.</li>
+        <li>Use strong, unique passwords + password manager.</li>
+        <li>Always enable 2FA where possible (preferably with hardware keys).</li>
+        <li>Use VPNs that don’t keep logs and support anonymous payment.</li>
+        <li>Prefer privacy-focused email providers, avoid big US-based ones.</li>
+        <li>Use burner phones or eSIMs purchased anonymously.</li>
+        <li>Keep devices updated and minimize metadata leakage.</li>
+        <li>Use end-to-end encrypted messaging apps without phone numbers (Session, SimpleX, Briar).</li>
+        <li>Avoid linking real identity with pseudonymous accounts.</li>
+      </ul>
+
+      <h3>Staying Anonymous While Gaming</h3>
+      <p>Gaming platforms like Steam typically require email verification and sometimes phone verification. To improve privacy:</p>
+      <ul>
+        <li>Create a separate Steam account with privacy-focused email.</li>
+        <li>Use VPN when logging in.</li>
+        <li>Avoid linking payment methods to real identity (use crypto if possible).</li>
+        <li>Limit friend list and public profile visibility.</li>
+      </ul>
+
+      <h3>Handling Government Subpoenas & EDR</h3>
+      <p>Using offshore services with no logs and anonymous payment can greatly reduce subpoena risk. However:</p>
+      <ul>
+        <li>Always encrypt your data locally before uploading.</li>
+        <li>Use multi-hop VPN or Tor for extra anonymity.</li>
+        <li>Use pseudonyms, avoid sharing personal info.</li>
+        <li>Use ephemeral emails and accounts for risky operations.</li>
+      </ul>
+      <p>Remember, no method is 100% safe if extreme pressure is applied.</p>
+    </article>
+  </section>
+
+</main>
+
+<script>
+  // Tab switching logic
+  const buttons = document.querySelectorAll('nav button.tab-btn');
+  const sections = document.querySelectorAll('main section.content-section');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons and sections
+      buttons.forEach(btn => btn.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+
+      // Add active class to clicked button and corresponding section
+      button.classList.add('active');
+      const tabId = button.getAttribute('data-tab');
+      document.getElementById(tabId).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
+<!-- End of site/index.html -->
+<!-- This is the end of the HTML document. -->
